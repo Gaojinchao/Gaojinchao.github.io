@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式验证</title>
+	</head>
+	<body>
+		<h2>请输入需要验证的内容</h2>
+
+		身份证号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="identityNum" onblur="identityNumCheck()" placeholder="请输入身份证号" />
+		<span id="identityNumShow"></span>
+		<br />
+
+		QQ账号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="qqNumber" onblur="qqNumberCheck()" placeholder="请输入QQ账号" />
+		<span id="qqNumberShow"></span>
+		<br />
+
+		手机号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="phoneNum" onblur="phoneNumCheck()" placeholder="请输入手机号" />
+		<span id="phoneNumShow"></span>
+		<br />
+
+		QQ邮箱:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="qqEmail" onblur="qqEmailCheck()" placeholder="请输入QQ邮箱" />
+		<span id="qqEmailShow"></span>
+		<br />
+
+		地址:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="site" onblur="siteCheck()" placeholder="XX省-XX市-XX区-XX路XX号" />
+		<span id="siteShow"></span>
+		<br />
+
+		邮政编码:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="postcode" onblur="postcodeCheck()" placeholder="请输入邮政编码" />
+		<span id="postcodeShow"></span>
+		<br />
+
+		银行卡号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="bankcard" onblur="bankcardCheck()" placeholder="请输入银行卡号" />
+		<span id="bankcardShow"></span>
+		<br />
+
+		学号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="studentNum" onblur="studentNumCheck()" placeholder="请输入学号" />
+		<span id="studentNumShow"></span>
+		<br />
+
+		车牌号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="carNum" onblur="carNumCheck()" placeholder="豫R:99999" />
+		<span id="carNumShow"></span>
+		<br />
+
+		快递单号:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="expressNum" onblur="expressNumCheck()" placeholder="请输入快递单号" />
+		<span id="expressNumShow"></span>
+		<br />
+
+		验证码:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="verificationCode" onblur="verificationCodeCheck()" placeholder="请输入四或六位验证码" />
+		<span id="verificationCodeShow"></span>
+		<br />
+
+		ISBN:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="ISBN" onblur="ISBNCheck()" placeholder="请输入ISBN书号" />
+		<span id="ISBNShow"></span>
+		<br />
+
+		网址:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="URL" onblur="URLCheck()" placeholder="请输入网址www.xxx.xxx" />
+		<span id="URLShow"></span>
+		<br />
+
+		IPV4地址:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="IPV4" onblur="IPV4Check()" placeholder="请输入IPV4地址" />
+		<span id="IPV4Show"></span>
+		<br />
+
+		IPV6地址:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="IPV6" onblur="IPV6Check()" placeholder="请输入IPV6地址" />
+		<span id="IPV6Show"></span>
+		<br />
+
+		出生年月日:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="birth" onblur="birthCheck()" placeholder="XX年XX月XX日" />
+		<span id="birthShow"></span>
+		<br />
+
+		姓名:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="name" onblur="nameCheck()" placeholder="请输入姓名" />
+		<span id="nameShow"></span>
+
+
+		<script>
+			<!-- 身份证号 -->
+			function identityNumCheck() {
+				// 获取值
+				var identityNum = document.getElementById("identityNum").value;
+				var identityNumShowDom = document.getElementById("identityNumShow");
+				// 正则表达式  身份证号18位
+				// 1-8{2}  身份证前两位代表省直辖市自治区 没有0和9
+				var isIdentityNum =
+					/^[1-8]{2}[0-9]{4}[0-9]{4}((0[1-9]{1})|(1[0-2]{1}))((0[1-9]{1})|(1[0-9]{1})|(2[0-9]{1})|(3[0-1]{1}))[0-9]{3}[0-9xX]{1}$/;
+				// 判断输出
+				if ((isIdentityNum.test(identityNum))) {
+					identityNumShowDom.innerText = "身份证号格式正确！";
+					identityNumShowDom.style.color = "blue";
+				} else {
+					identityNumShowDom.innerText = "身份证号格式错误！";
+					identityNumShowDom.style.color = "red";
+				}
+			}
+
+			<!-- QQ号 -->
+			function qqNumberCheck() {
+				// 获取值
+				var qqNumber = document.getElementById("qqNumber").value;
+				var qqNumberShowDom = document.getElementById("qqNumberShow");
+				//正则表达式  QQ号5至15位
+				// 第一位1-9  后4-14位0-9
+				var isQqNumberCheck = /^[1-9]{1}[0-9]{4,14}$/;
+				// 判断输出
+				if ((isQqNumberCheck.test(qqNumber))) {
+					qqNumberShowDom.innerText = "QQ账号格式正确！";
+					qqNumberShowDom.style.color = "blue";
+				} else {
+					qqNumberShowDom.innerText = "QQ账号格式错误！";
+					qqNumberShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 手机号 -->
+			function phoneNumCheck() {
+				// 获取值
+				var phoneNum = document.getElementById("phoneNum").value;
+				var phoneNumShowDom = document.getElementById("phoneNumShow");
+				// 正则表达式  手机号11位
+				// 第一位1  后十位0-9
+				var isPhoneNumCheck = /^[1]{1}[0-9]{10}$/;
+				// 判断输出
+				if ((isPhoneNumCheck.test(phoneNum))) {
+					phoneNumShowDom.innerText = "手机号格式正确！";
+					phoneNumShowDom.style.color = "blue";
+				} else {
+					phoneNumShowDom.innerText = "手机号格式错误！";
+					phoneNumShowDom.style.color = "red";
+				}
+			}
+
+			<!-- QQ邮箱 -->
+			function qqEmailCheck() {
+				// 获取值
+				var qqEmail = document.getElementById("qqEmail").value;
+				var qqEmailShowDom = document.getElementById("qqEmailShow");
+				// 正则表达式  QQ号5至15位 + @qq.com
+				// 第一位1-9  后4-14位0-9 + @qq.com
+				var isqqEmailCheck = /^[1-9]{1}[0-9]{4,14}@qq.com$/;
+				// 判断输出
+				if ((isqqEmailCheck.test(qqEmail))) {
+					qqEmailShowDom.innerText = "QQ邮箱格式正确！";
+					qqEmailShowDom.style.color = "blue";
+				} else {
+					qqEmailShowDom.innerText = "QQ邮箱格式错误！";
+					qqEmailShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 地址 -->
+			function siteCheck() {
+				// 获取值
+				var site = document.getElementById("site").value;
+				var siteShowDom = document.getElementById("siteShow");
+				// 正则表达式  地址
+				// XX省-XX市-XX区-XX路XX号
+				var isSiteCheck = /^[-\u4e00-\u9fa5]+[0-9][u4e00-\u9fa5]+$/;
+				// 判断输出
+				if ((isSiteCheck.test(site))) {
+					siteShowDom.innerText = "地址格式正确！";
+					siteShowDom.style.color = "blue";
+				} else {
+					siteShowDom.innerText = "地址格式错误！";
+					siteShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 邮政编码 -->
+			function postcodeCheck() {
+				// 获取值
+				var postcode = document.getElementById("postcode").value;
+				var postcodeShowDom = document.getElementById("postcodeShow");
+				// 正则表达式  邮政编码
+				// 六位数字
+				var isPostcodeCheck = /^[0-9]{6}$/;
+				// 判断输出
+				if ((isPostcodeCheck.test(postcode))) {
+					postcodeShowDom.innerText = "邮政编码格式正确！";
+					postcodeShowDom.style.color = "blue";
+				} else {
+					postcodeShowDom.innerText = "邮政编码格式错误！";
+					postcodeShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 银行卡号 -->
+			function bankcardCheck() {
+				// 获取值
+				var bankcard = document.getElementById("bankcard").value;
+				var bankcardShowDom = document.getElementById("bankcardShow");
+				// 正则表达式  银行卡号
+				// 16 17 19位数字 没有0开头的银行卡号
+				var isBankcardCheck = /^[1-9](([0-9]{15,16})|([0-9]{18}))$/;
+				// 判断输出
+				if ((isBankcardCheck.test(bankcard))) {
+					bankcardShowDom.innerText = "银行卡号格式正确！";
+					bankcardShowDom.style.color = "blue";
+				} else {
+					bankcardShowDom.innerText = "银行卡号格式错误！";
+					bankcardShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 学号 -->
+			function studentNumCheck() {
+				// 获取值
+				var studentNum = document.getElementById("studentNum").value;
+				var studentNumShowDom = document.getElementById("studentNumShow");
+				// 正则表达式  学号
+				// 6 8 10位数字
+				var isStudentNumCheck = /^[0-9](([0-9]{5})|([0-9]{7})|([0-9]{9}))$/;
+				// 判断输出
+				if ((isStudentNumCheck.test(studentNum))) {
+					studentNumShowDom.innerText = "学号格式正确！";
+					studentNumShowDom.style.color = "blue";
+				} else {
+					studentNumShowDom.innerText = "学号格式错误！";
+					studentNumShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 车牌号 -->
+			function carNumCheck() {
+				// 获取值
+				var carNum = document.getElementById("carNum").value;
+				var carNumShowDom = document.getElementById("carNumShow");
+				// 正则表达式  车牌号
+				// XX:XXXXX
+				var isCarNumCheck = /^[-\u4e00-\u9fa5][A-Z][:][A-Z0-9]{5}$/;
+				// 判断输出
+				if ((isCarNumCheck.test(carNum))) {
+					carNumShowDom.innerText = "车牌号格式正确！";
+					carNumShowDom.style.color = "blue";
+				} else {
+					carNumShowDom.innerText = "车牌号格式错误！";
+					carNumShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 快递单号 -->
+			function expressNumCheck() {
+				// 获取值
+				var expressNum = document.getElementById("expressNum").value;
+				var expressNumShowDom = document.getElementById("expressNumShow");
+				// 正则表达式  快递单号8  9  12  13位
+				var isExpressNumCheck = /^([0-9]{8,9}|[0-9]{12,13})$/;
+				// 判断输出
+				if ((isExpressNumCheck.test(expressNum))) {
+					expressNumShowDom.innerText = "快递单号格式正确！";
+					expressNumShowDom.style.color = "blue";
+				} else {
+					expressNumShowDom.innerText = "快递单号格式错误！";
+					expressNumShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 验证码 -->
+			function verificationCodeCheck() {
+				// 获取值
+				var verificationCode = document.getElementById("verificationCode").value;
+				var verificationCodeShowDom = document.getElementById("verificationCodeShow");
+				// 正则表达式  验证码
+				// XXXX | XXXXXX
+				var isVerificationCodeCheck = /^([a-zA-Z0-9]{4}|[a-zA-Z0-9]{6})+$/;
+				// 判断输出
+				if ((isVerificationCodeCheck.test(verificationCode))) {
+					verificationCodeShowDom.innerText = "验证码格式正确！";
+					verificationCodeShowDom.style.color = "blue";
+				} else {
+					verificationCodeShowDom.innerText = "验证码格式错误！";
+					verificationCodeShowDom.style.color = "red";
+				}
+			}
+
+			<!-- ISBN -->
+			function ISBNCheck() {
+				// 获取值
+				var ISBN = document.getElementById("ISBN").value;
+				var ISBNShowDom = document.getElementById("ISBNShow");
+				// 正则表达式  ISBN
+				// 978或979-X-XXX-XXXXX-X
+				var isISBNCheck = /^(97[8]|97[9])-[0-9]-[0-9]{3}-[0-9]{5}-[0-9]$/;
+				// 判断输出
+				if ((isISBNCheck.test(ISBN))) {
+					ISBNShowDom.innerText = "ISBN格式正确！";
+					ISBNShowDom.style.color = "blue";
+				} else {
+					ISBNShowDom.innerText = "ISBN格式错误！";
+					ISBNShowDom.style.color = "red";
+				}
+			}
+
+			<!-- 网址 -->
+			function URLCheck() {
+				// 获取值
+				var URL = document.getElementById("URL").value;
+				var URLShowDom = document.getElementById("URLShow");
+				// 正则表达式  网址www.gaojc.top
+				// www.xxx.xxx
+				var isURLCheck = /^www.[A-Za-z0-9]+.[A-Za-z0-9]+$/;
+				// 判断输出
+				if ((isURLCheck.test(URL))) {
+					URLShowDom.innerText = "网址格式正确！";
+					URLShowDom.style.color = "blue";
+				} else {
+					URLShowDom.innerText = "网址格式错误！";
+					URLShowDom.style.color = "red";
+				}
+			}
+
+			<!-- IPV4地址 -->
+			function IPV4Check() {
+				// 获取值
+				var IPV4 = document.getElementById("IPV4").value;
+				var IPV4ShowDom = document.getElementById("IPV4Show");
+				// 正则表达式  IPV4地址XXX.XXX.XXX.XXX
+				// 0-255.0-255.0-255.0-255
+				var isIPV4Check =
+					/^(([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|2[0-5]{2})\.){3}([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|2[0-5]{2})$/;
+				// 判断输出
+				if ((isIPV4Check.test(IPV4))) {
+					IPV4ShowDom.innerText = "IPV4地址格式正确！";
+					IPV4ShowDom.style.color = "blue";
+				} else {
+					IPV4ShowDom.innerText = "IPV4地址格式错误！";
+					IPV4ShowDom.style.color = "red";
+				}
+			}
+
+			<!-- IPV6地址 -->
+			function IPV6Check() {
+				// 获取值
+				var IPV6 = document.getElementById("IPV6").value;
+				var IPV6ShowDom = document.getElementById("IPV6Show");
+				// 正则表达式  IPV6地址 十六进制 0-9  Aa-Ff
+				// XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX:XXXX
+				var isIPV6Check = /^(([0-9A-Fa-f]{1,4})[:]){7}([0-9A-Fa-f]{1,4})$/;
+				// 判断输出
+				if ((isIPV6Check.test(IPV6))) {
+					IPV6ShowDom.innerText = "IPV6地址格式正确！";
+					IPV6ShowDom.style.color = "blue";
+				} else {
+					IPV6ShowDom.innerText = "IPV6地址格式错误！";
+					IPV6ShowDom.style.color = "red";
+				}
+			}
+			
+			<!-- 出生年月日 -->
+			function birthCheck() {
+				// 获取值
+				var birth = document.getElementById("birth").value;
+				var birthShowDom = document.getElementById("birthShow");
+				// 正则表达式  出生年月日
+				// XX年XX月XX日
+				var isBirthCheck = /^[0-9]{1,4}[年](1[0,2]|[1-9])[月]([1-9]|1[0-9]|2[0-9]|3[0-1])[日]$/;
+				// 判断输出
+				if ((isBirthCheck.test(birth))) {
+					birthShowDom.innerText = "出生年月日格式正确！";
+					birthShowDom.style.color = "blue";
+				} else {
+					birthShowDom.innerText = "出生年月日格式错误！";
+					birthShowDom.style.color = "red";
+				}
+			}
+			
+			<!-- 姓名 -->
+			function nameCheck() {
+				// 获取值
+				var name = document.getElementById("name").value;
+				var nameShowDom = document.getElementById("nameShow");
+				// 正则表达式  姓名
+				// X XX  XXX  XXX·XXX
+				var isNameCheck = /^([\u4e00-\u9fa5]{1,})([·]*[\u4e00-\u9fa5])*$/
+				// 判断输出
+				if ((isNameCheck.test(name))) {
+					nameShowDom.innerText = "姓名格式正确！";
+					nameShowDom.style.color = "blue";
+				} else {
+					nameShowDom.innerText = "姓名格式错误！";
+					nameShowDom.style.color = "red";
+				}
+			}
+		</script>
+	</body>
+</html>
