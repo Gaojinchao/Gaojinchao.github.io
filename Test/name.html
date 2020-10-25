@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://127.0.0.1:8848/Lesson_04/name.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>姓名</title>
+	</head>
+	<body>
+		<!-- 页面代码 -->
+		姓名:
+		<!-- 设置id 光标消失事件 给用户提示 -->
+		<input type="text" id="name" onblur="nameCheck()" placeholder="请输入姓名">
+		<span id="nameShow"></span>
+
+		<script>
+			function nameCheck() {
+				// 获取值
+				var name = document.getElementById("name").value;
+				var nameShowDom = document.getElementById("nameShow");
+				// 正则表达式  姓名
+				// X XX  XXX  XXX·XXX
+				var isNameCheck = /^(([\u4e00-\u9fa5]*){1,})([·]*[\u4e00-\u9fa5]*)$/;
+				// var isNameCheck = /^([\u4e00-\u9fa5]*){1,}([·]*[\u4e00-\u9fa5]*)$/;
+				// 判断输出
+				if ((isNameCheck.test(name))) {
+					nameShowDom.innerText = "姓名格式正确！";
+					nameShowDom.style.color = "blue";
+				} else {
+					nameShowDom.innerText = "姓名格式错误！";
+					nameShowDom.style.color = "red";
+				}
+			}
+		</script>
+	<script>document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35929/livereload.js?snipver=1"></' + 'script>')</script><script src="./name_files/livereload.js.下载"></script><script>document.addEventListener('LiveReloadDisconnect', function() { setTimeout(function() { window.location.reload(); }, 500); })</script>
+
+</body></html>
