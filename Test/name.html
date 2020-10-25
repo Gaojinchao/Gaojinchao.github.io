@@ -1,35 +1,321 @@
 <!DOCTYPE html>
-<!-- saved from url=(0041)http://127.0.0.1:8848/Lesson_04/name.html -->
+<!-- saved from url=(0044)https://yangxin01.gitee.io/project/test.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
-		<title>姓名</title>
+		<title>判断格式是否正确</title>
 	</head>
+
 	<body>
-		<!-- 页面代码 -->
-		姓名:
-		<!-- 设置id 光标消失事件 给用户提示 -->
-		<input type="text" id="name" onblur="nameCheck()" placeholder="请输入姓名">
-		<span id="nameShow"></span>
+		<!-- HTML代码 -->
+		<h1>输入相应的内容查看格式是否正确</h1>
+		<span>身份证号:</span>
+		<input type="text" id="IDNumber" placeholder="请输入身份证号" onblur="checkIDNumber(this)">
+		<span id="IDNumberShow"></span><br>
+
+		<span>QQ号:</span>
+		<input type="text" id="qqNumber" placeholder="请输入QQ号" onblur="checkQQNumber(this)">
+		<span id="qqNumberShow"></span><br>
+
+		<span>手机号:</span>
+		<input type="text" id="phone" placeholder="请输入手机号" onblur="checkPhone(this)">
+		<span id="phoneShow"></span><br>
+
+		<span>邮箱号:</span>
+		<input type="text" id="email" placeholder="请输入邮箱" onblur="checkEmail(this)">
+		<span id="emailShow"></span><br>
+
+		<span>地址:</span>
+		<input type="text" id="address" placeholder="请输入地址" onblur="checkAddress(this)">
+		<span id="addressShow"></span><br>
+
+		<span>邮编:</span>
+		<input type="text" id="zipCode" placeholder="请输入邮编" onblur="checkZipCode(this)">
+		<span id="zipCodeShow"></span><br>
+
+		<span>银行卡号:</span>
+		<input type="text" id="bankCardNumber" placeholder="请输入银行卡号" onblur="checkBankCardNumber(this)">
+		<span id="bankCardNumberShow"></span><br>
+
+		<span>学号:</span>
+		<input type="text" id="studentID" placeholder="输入河南工院学生的学号" onblur="checkStudentID(this)">
+		<span id="studentIDShow"></span><br>
+
+		<span>车牌号:</span>
+		<input type="text" id="carNumber" placeholder="请输入车牌号" onblur="checkCarNumber(this)">
+		<span id="carNumberShow"></span><br>
+
+		<span>快递单号:</span>
+		<input type="text" id="expressNumber" placeholder="请输入邮政快递单号" onblur="checkExpressNumber(this)">
+		<span id="expressNumberShow"></span><br>
+
+		<span>验证码:</span>
+		<input type="text" id="code" placeholder="请输入四位或六位验证码" onblur="checkCode(this)">
+		<span id="codeShow"></span><br>
+
+		<span>ISBN:</span>
+		<input type="text" id="isbn" placeholder="请输入ISBN码" onblur="checkIsbn(this)">
+		<span id="isbnShow"></span><br>
+
+		<span>网址:</span>
+		<input type="text" id="website" placeholder="请输入网址" onblur="checkWebsite(this)">
+		<span id="websiteShow"></span><br>
+
+		<span>IPV4地址:</span>
+		<input type="text" id="ipv4" placeholder="请输入IPV4地址" onblur="checkIpv4(this)">
+		<span id="ipv4Show"></span><br>
+
+		<span>IPV6地址:</span>
+		<input type="text" id="ipv6" placeholder="请输入IPV6地址" onblur="checkIpv6(this)">
+		<span id="ipv6Show"></span><br>
+		
+		<span>出生年月日:</span>
+		<input type="text" id="birthday" placeholder="请输入出生年月日" onblur="checkBirthday(this)">
+		<span id="birthdayShow"></span><br>
+		
+		<span>姓名:</span>
+		<input type="text" id="name" placeholder="请输入姓名" onblur="checkName(this)">
+		<span id="nameShow"></span><br>
 
 		<script>
-			function nameCheck() {
-				// 获取值
-				var name = document.getElementById("name").value;
-				var nameShowDom = document.getElementById("nameShow");
-				// 正则表达式  姓名
-				// X XX  XXX  XXX·XXX
-				var isNameCheck = /^(([\u4e00-\u9fa5]*){1,})([·]*[\u4e00-\u9fa5]*)$/;
-				// var isNameCheck = /^([\u4e00-\u9fa5]*){1,}([·]*[\u4e00-\u9fa5]*)$/;
-				// 判断输出
-				if ((isNameCheck.test(name))) {
-					nameShowDom.innerText = "姓名格式正确！";
-					nameShowDom.style.color = "blue";
+			// 用正则表达式检查某些事物的格式
+			// 身份证格式检查
+			function checkIDNumber(IDNumberDom) {
+				var IDNumber = IDNumberDom.value;
+				var IDNumberShowDom = document.getElementById("IDNumberShow");
+				var isIDNumber = /^[1-8]{1}[0-9]{5}[0-9]{4}((0[1-9]{1})|(1[0-2]{1}))((0[1-9]{1})|(1[0-9]{1})|(2[0-9]{1})|(3[0-1]{1}))[0-9]{3}[0-9xX]{1}$/;
+				if(isIDNumber.test(IDNumber)) {
+					IDNumberShowDom.innerText = "身份证格式正确";
+					IDNumberShowDom.style.color = "green";
 				} else {
-					nameShowDom.innerText = "姓名格式错误！";
+					IDNumberShowDom.innerText = "*身份证格式错误";
+					IDNumberShowDom.style.color = "red";
+				}
+			}
+
+			// QQ号格式检查
+			function checkQQNumber(qqNumberDom) {
+				var qqNumber = qqNumberDom.value;
+				var qqNumberShowDom = document.getElementById("qqNumberShow");
+				var isQQNumber = /^[1-9]{1}[0-9]{4,10}$/; // 1-9开头 最低五位数 最高11位数
+				if(isQQNumber.test(qqNumber)) {
+					qqNumberShowDom.innerText = "QQ号格式正确";
+					qqNumberShowDom.style.color = "green";
+				} else {
+					qqNumberShowDom.innerText = "*QQ号格式错误 5位-11位数字";
+					qqNumberShowDom.style.color = "red";
+				}
+			}
+
+			// 手机号格式检查
+			function checkPhone(phoneDom) {
+				var phone = phoneDom.value;
+				var phoneShowDom = document.getElementById("phoneShow");
+				var isPhone = /^[1]{1}[3-9]{1}[0-9]{9}$/; // 1开头  3-9第二位数 一共11位数
+				if(isPhone.test(phone)) {
+					phoneShowDom.innerText = "手机号格式正确";
+					phoneShowDom.style.color = "green";
+				} else {
+					phoneShowDom.innerText = "*手机号格式错误 11位1开头";
+					phoneShowDom.style.color = "red";
+				}
+			}
+
+			// 邮箱格式
+			function checkEmail(emailDom) {
+				var email = emailDom.value;
+				var emailShowDom = document.getElementById("emailShow");
+				var isEmail = /^[0-9a-zA-Z]+@[a-z0-9]+\.com$/; // 数字或字母 有@ 后面跟.com
+				if(isEmail.test(email)) {
+					emailShowDom.innerText = "邮箱格式正确";
+					emailShowDom.style.color = "green";
+				} else {
+					emailShowDom.innerText = "*邮箱格式错误 xxxx@xx.com";
+					emailShowDom.style.color = "red";
+				}
+			}
+
+			// 地址格式检查 有中文 有数字 有横杠
+			function checkAddress(addressDom) {
+				var address = addressDom.value;
+				var addressShowDom = document.getElementById("addressShow");
+				var isAddress = /^([-a-zA-Z0-9\u4e00-\u9fa5])+[-]([a-zA-Z0-9\u4e00-\u9fa5])+$/; // 中文 数字 横杠
+				if(isAddress.test(address)) {
+					addressShowDom.innerText = "地址格式正确";
+					addressShowDom.style.color = "green";
+				} else {
+					addressShowDom.innerText = "*地址格式错误 xxx-xxx-xxx...";
+					addressShowDom.style.color = "red";
+				}
+			}
+
+			// 邮编
+			function checkZipCode(zipCodeDom) {
+				var zipCode = zipCodeDom.value;
+				var zipCodeShowDom = document.getElementById("zipCodeShow");
+				var isZipCode = /^[1-9][0-9]{5}$/; //不能0开头 6位数
+				if(isZipCode.test(zipCode)) {
+					zipCodeShowDom.innerText = "邮编格式正确";
+					zipCodeShowDom.style.color = "green";
+				} else {
+					zipCodeShowDom.innerText = "*邮编格式错误 6位数 不能0开头";
+					zipCodeShowDom.style.color = "red";
+				}
+			}
+
+			// 银行卡号
+			function checkBankCardNumber(bankCardNumberDom) {
+				var bankCardNumber = bankCardNumberDom.value;
+				var bankCardNumberShowDom = document.getElementById("bankCardNumberShow");
+				var isBankCardNumber = /^[1-9]{1}(([0-9]{15,16})|([0-9]){18})$/; // 1-9开头 有16位的、17位的、19位的
+				if(isBankCardNumber.test(bankCardNumber)) {
+					bankCardNumberShowDom.innerText = "银行卡号格式正确";
+					bankCardNumberShowDom.style.color = "green";
+				} else {
+					bankCardNumberShowDom.innerText = "*银行卡号错误 1-9开头 16位的、17位的、19位的";
+					bankCardNumberShowDom.style.color = "red";
+				}
+			}
+
+			// 学号
+			function checkStudentID(studentIDDom) {
+				var studentID = studentIDDom.value;
+				var studentIDShowDom = document.getElementById("studentIDShow");
+				var isStudentID = /^[0-9]{4}((0[1-9]){1}|([1-9][0-9]){1})((0[1-9])|([1-9][0-9]{1}))((0[1-9]{1})|([1-9][0-9]{1}))$/; // 10位数 第五位和第六位是多少届的 7,8位是班级 最后两位是编号
+				if(isStudentID.test(studentID)) {
+					studentIDShowDom.innerText = "学号格式正确";
+					studentIDShowDom.style.color = "green";
+				} else {
+					studentIDShowDom.innerText = "*学号格式错误 河南工院学生的学号";
+					studentIDShowDom.style.color = "red";
+				}
+			}
+
+			// 车牌号
+			function checkCarNumber(carNumberDom) {
+				var carNumber = carNumberDom.value;
+				var carNumberShowDom = document.getElementById("carNumberShow");
+				var isCarNumber = /^[\u4e00-\u9fa5][A-Z][-][A-Z0-9]{5}$/; //第一位汉字 第二位大写字母 第三个横杠 后面五个由数字和大写字母组成
+				if(isCarNumber.test(carNumber)) {
+					carNumberShowDom.innerText = "车牌号格式正确";
+					carNumberShowDom.style.color = "green";
+				} else {
+					carNumberShowDom.innerText = "*车牌号格式错误 豫X-XXXXX";
+					carNumberShowDom.style.color = "red";
+				}
+			}
+
+			// 快递单号 
+			function checkExpressNumber(expressNumberDom) {
+				var expressNumber = expressNumberDom.value;
+				var expressNumberShowDom = document.getElementById("expressNumberShow");
+				var isExpressNumber = /^[Ee][A-Za-z]([0-9]{9})([A-Za-z]{2})$/; // 以邮政编码为例子,首字母E开头 第二个大写字母 九位数字 后面两个大写字母
+				if(isExpressNumber.test(expressNumber)) {
+					expressNumberShowDom.innerText = "快递单号格式正确";
+					expressNumberShowDom.style.color = "green";
+				} else {
+					expressNumberShowDom.innerText = "*快递单号格式错误 第一位E第二位字母中间9个数字 后面两个字母";
+					expressNumberShowDom.style.color = "red";
+				}
+			}
+
+			// 验证码(数字和字母)
+			function checkCode(codeDom) {
+				var code = codeDom.value;
+				var codeShowDom = document.getElementById("codeShow");
+				var isCode = /^(([0-9a-zA-Z]{4})|([0-9a-zA-Z]{6}))$/; //验证码有四位和六位 由数字和字母组成
+				if(isCode.test(code)) {
+					codeShowDom.innerText = "验证码格式正确";
+					codeShowDom.style.color = "green";
+				} else {
+					codeShowDom.innerText = "*验证码格式错误 四位或六位数字和字母组成";
+					codeShowDom.style.color = "red";
+				}
+			}
+
+			// ISBN码格式
+			function checkIsbn(isbnDom) {
+				var isbn = isbnDom.value;
+				var isbnShowDom = document.getElementById("isbnShow");
+				var isIsbn = /^(97[8]|97[9])-[0-9]-[0-9]{3}-[0-9]{5}-[0-9]$/; // 978,979开头 后面横杠加数字978-x-xxx-xxxxx-x
+				if(isIsbn.test(isbn)) {
+					isbnShowDom.innerText = "ISBN格式正确";
+					isbnShowDom.style.color = "green";
+				} else {
+					isbnShowDom.innerText = "*ISBN格式错误 978,979开头 后面横杠加数字978-x-xxx-xxxxx-x";
+					isbnShowDom.style.color = "red";
+				}
+			}
+
+			// 网址格式    . : :// /
+			function checkWebsite(websiteDom) {
+				var website = websiteDom.value;
+				var websiteShowDom = document.getElementById("websiteShow");
+				var isWebsite = /^(http|https)(:\/\/)((www)\.)*[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)[/0-9a-zA-Z:\.?#=]*$/; // http或者https开头 加上:// 和www.然后跟网址 再跟.后缀 后面定义访问子页面
+				if(isWebsite.test(website)) {
+					websiteShowDom.innerText = "网址格式正确";
+					websiteShowDom.style.color = "green";
+				} else {
+					websiteShowDom.innerText = "*网址格式错误 http或者https开头 加上://和然后跟网址 再跟.后缀 后面可以写子页面";
+					websiteShowDom.style.color = "red";
+				}
+			}
+
+			// IPV4地址
+			function checkIpv4(ipv4Dom) {
+				var ipv4 = ipv4Dom.value;
+				var ipv4ShowDom = document.getElementById("ipv4Show");
+				var isIpv4 = /^((([0-9]{1,2})|(1[0-9]{2})|(2[0-4][0-9])|(25[0-5]))\.){3}(([0-9]{1,2})|(1[0-9]{2})|(2[0-4][0-9])|(25[0-5]))$/; // 四组 每组由.隔开 范围都是0-255
+				if(isIpv4.test(ipv4)) {
+					ipv4ShowDom.innerText = "IPV4地址格式正确";
+					ipv4ShowDom.style.color = "green";
+				} else {
+					ipv4ShowDom.innerText = "*IPV4地址格式错误 四组 每组范围在0-255之间 用.隔开";
+					ipv4ShowDom.style.color = "red";
+				}
+			}
+
+			// IPV6地址
+			function checkIpv6(ipv6Dom) {
+				var ipv6 = ipv6Dom.value;
+				var ipv6ShowDom = document.getElementById("ipv6Show");
+				var isIpv6 = /^(([a-fA-F0-9]{1,4}[:]){7}[a-fA-F0-9]{1,4})$/; // 8个段 每段都是16进制最小0000最大FFFF
+				if(isIpv6.test(ipv6)) {
+					ipv6ShowDom.innerText = "IPV6地址格式正确";
+					ipv6ShowDom.style.color = "green";
+				} else {
+					ipv6ShowDom.innerText = "*IPV6地址格式错误 8组 每组都是16进制最小0000最大FFFF 中间用:隔开";
+					ipv6ShowDom.style.color = "red";
+				}
+			}
+
+			// 出生年月日  2001年12月10日
+			function checkBirthday(birthdayDom) {
+				var birthday = birthdayDom.value;
+				var birthdayShowDom = document.getElementById("birthdayShow");
+				var isBirthday = /^[0-9]{4}[年]((0[1-9])|(1[0-2]))[月]((0[1-9])|(1[0-9])|(2[0-9])|(3[0-1]))[日]$/; // 出生年月日判断
+				if(isBirthday.test(birthday)) {
+					birthdayShowDom.innerText = "出生年月日格式正确";
+					birthdayShowDom.style.color = "green";
+				} else {
+					birthdayShowDom.innerText = "*出生年月日格式错误 xxxx年xx月xx日";
+					birthdayShowDom.style.color = "red";
+				}
+			}
+
+			// 姓名 >=2  中文·中文
+			function checkName(nameDom) {
+				var name = nameDom.value;
+				var nameShowDom = document.getElementById("nameShow");
+				var isName = /^[\u4e00-\u9fa5]{2,}([·]*[\u4e00-\u9fa5]*)$/; //最低两位数 可以有·后面的东西也可以没有 都是汉字
+				if(isName.test(name)) {
+					nameShowDom.innerText = "姓名格式正确";
+					nameShowDom.style.color = "green";
+				} else {
+					nameShowDom.innerText = "*姓名格式错误 最低两个中文 有特殊名字可以用·";
 					nameShowDom.style.color = "red";
 				}
 			}
 		</script>
-	<script>document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35929/livereload.js?snipver=1"></' + 'script>')</script><script src="./name_files/livereload.js.下载"></script><script>document.addEventListener('LiveReloadDisconnect', function() { setTimeout(function() { window.location.reload(); }, 500); })</script>
+	
 
 </body></html>
