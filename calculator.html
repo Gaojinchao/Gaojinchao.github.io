@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://127.0.0.1:8848/Lesson_01/calculator.html# -->
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title></title>
+		<!-- 样式 -->
+		<style>
+			tr,td{
+				text-align: center;
+			}
+			a{
+				/* 去除下划线 */
+				text-decoration: none;
+				color: black;
+			}
+			a:hover{
+				background-color:darkgray;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 表格 -->
+		<table border="1px" cellpadding="1" cellspacing="1" align="center">
+			<tbody><tr>
+				<td colspan="4" style="font-weight: 600;">计算器</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="text" id="numInput" style="text-align: right;">
+				</td>
+			</tr>
+			<tr>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">C</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">/</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">*</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">-</a></td>
+			</tr>
+			<tr>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">7</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">8</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">9</a></td>
+				<td onclick="onClick(this)" rowspan="2"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">+</a></td>
+			</tr>
+			<tr>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">4</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">5</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">6</a></td>
+			</tr>
+			<tr>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">1</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">2</a></td>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">3</a></td>
+				<td onclick="onClick(this)" rowspan="2"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">=</a></td>
+			</tr>
+			<tr>
+				<td onclick="onClick(this)"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">0</a></td>
+				<td onclick="onClick(this)" colspan="2"><a href="http://127.0.0.1:8848/Lesson_01/calculator.html#">.</a></td>
+			</tr>
+		</tbody></table>
+		
+		<script>
+			// 结果等空
+			var strs = "";
+			function onClick(count) {
+				var numInput = document.getElementById("numInput");
+				// 接收显示
+				var str = count.innerText;
+				// 如果等于(点击)C就清空
+				if(str == "C"){
+					numInput.value = "";
+					str = "";
+					strs = "";
+				}
+				// 如果等于(点击)= 执行eval()算法 得到结果
+				if(str == "="){
+					str = eval(strs);
+					numInput.value = "";
+					strs = str + "";
+				}else{
+					// 否则继续将内容写入字符串后
+					strs += str;
+				}
+				// 如果等于(点击) + - * / 就显示 + - * /
+				if(str == "+" || str == "-" || str == "*" || str == "/"){
+					numInput.value = str;
+				}else{
+					// 如果第一次不是(没点击)数字 将此内容(运算符)清除
+					if(isNaN(numInput.value)){
+						numInput.value = "";
+					}
+					// 如果一直是数字则继续将内容写入字符串后
+					numInput.value += str;
+				}
+			}
+		</script>
+	<script>document.write('<script src="//' + (location.host || 'localhost').split(':')[0] + ':35929/livereload.js?snipver=1"></' + 'script>')</script><script src="./calculator_files/livereload.js.下载"></script><script>document.addEventListener('LiveReloadDisconnect', function() { setTimeout(function() { window.location.reload(); }, 500); })</script>
+
+</body></html>
